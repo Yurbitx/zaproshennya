@@ -183,8 +183,10 @@
 </div>
 <script>
   if('scrollRestoration' in history){history.scrollRestoration='manual';}
-  window.scrollTo(0,0);
-  window.addEventListener('pageshow', function(e){ if(e.persisted) window.scrollTo(0,0); });
+  function toTop(){ window.scrollTo(0,0); }
+  toTop();
+  window.addEventListener('pageshow', toTop);
+  window.addEventListener('load', function(){ toTop(); setTimeout(toTop,0); setTimeout(toTop,100); setTimeout(toTop,300); });
   (function(){var to=new URLSearchParams(location.search).get('to');
     if(to){to=decodeURIComponent(to.replace(/\+/g,' ')).trim();if(to)document.getElementById('greeting').textContent='Дорогі '+to+'!';}})();
   var target=new Date('2026-10-17T13:30:00+02:00').getTime();
